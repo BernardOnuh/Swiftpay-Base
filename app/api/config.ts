@@ -1,17 +1,6 @@
-import { createClient, createPublicClient, http } from "viem";
-import { baseSepolia } from "viem/chains";
-import { ENTRYPOINT_ADDRESS_V06 } from "permissionless";
-import { paymasterActionsEip7677 } from "permissionless/experimental";
+// use NODE_ENV to not have change config based on where it is deployed
 
-export const client = createPublicClient({
-    chain: baseSepolia,
-    transport: http(),
-});
+export const NEXT_PUBLIC_URL = process.env.NODE_ENV == 'development' ? 'http://localhost:3000' : '';
+// Add the API KEY from the coinbase developer portal
 
-
-const paymasterService = process.env.PAYMASTER_SERVICE_URL!;
-
-export const paymasterClient = createClient({
-    chain: baseSepolia,
-    transport: http(paymasterService),
-  }).extend(paymasterActionsEip7677({ entryPoint: ENTRYPOINT_ADDRESS_V06 }));
+export const NEXT_PUBLIC_CDP_API_KEY = process.env.NEXT_PUBLIC_CDP_API_KEY;

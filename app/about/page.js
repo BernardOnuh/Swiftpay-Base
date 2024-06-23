@@ -4,7 +4,7 @@ import Navbar from "../../components/Navbar";
 const AboutUs = () => {
   return (
     <>
-    <Navbar />
+      <Navbar />
       <section className="py-16 border-t border-gray-200">
         <div className="container mx-auto px-4">
           <h2 className="text-3xl font-semibold text-gray-800 mb-8">
@@ -16,16 +16,16 @@ const AboutUs = () => {
                 Welcome to SwiftPay – Where Efficiency Meets Innovation!
               </p>
               <p className="text-gray-600 leading-relaxed">
-                At SwiftPay, we've harnessed the incredible potential of
+                At SwiftPay, we&apos;ve harnessed the incredible potential of
                 blockchain technology, harnessed the capabilities of Artificial
                 Intelligence, and embraced the real-time data streaming offered
                 by the Streamr Network. The result? A revolutionary platform
                 that simplifies financial processes, reduces manual effort, and
                 enhances the overall efficiency of payroll and invoice
-                management. Whether you're a business owner seeking streamlined
-                payroll solutions or an individual looking for a hassle-free way
-                to manage payments and invoices, SwiftPay is your ultimate
-                financial companion.
+                management. Whether you&apos;re a business owner seeking
+                streamlined payroll solutions or an individual looking for a
+                hassle-free way to manage payments and invoices, SwiftPay is
+                your ultimate financial companion.
               </p>
             </div>
             <div className="space-y-4">
@@ -34,10 +34,11 @@ const AboutUs = () => {
               </h3>
               <p className="text-gray-600 leading-relaxed">
                 SwiftPay was born from a vision to transform how financial
-                processes are handled. We're on a mission to empower businesses
-                and individuals with cutting-edge tools that make payroll and
-                invoice management a breeze. Our user-friendly interface, backed
-                by a robust feature set, redefines the financial experience.
+                processes are handled. We&apos;re on a mission to empower
+                businesses and individuals with cutting-edge tools that make
+                payroll and invoice management a breeze. Our user-friendly
+                interface, backed by a robust feature set, redefines the
+                financial experience.
               </p>
             </div>
           </div>

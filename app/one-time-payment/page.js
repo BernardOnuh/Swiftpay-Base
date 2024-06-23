@@ -1,5 +1,6 @@
 "use client";
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
+import { useAccount, useConnect, useDisconnect } from "wagmi";
 import { useRouter } from "next/navigation";
 import { getAuth, onAuthStateChanged, signOut } from "firebase/auth";
 import Layout from "../../components/Sidebar";
@@ -10,7 +11,6 @@ import { app } from "../../firebase/firebase";
 import { SwiftpayBasedABI } from "../../constant/constant";
 import { SwiftpayBasedAddress } from "../../constant/constant";
 import { useWriteContract } from "wagmi";
-import { useAccount, useConnect, useDisconnect } from "wagmi";
 
 const OneTimePaymentPage = () => {
   const account = useAccount();
@@ -51,21 +51,22 @@ const OneTimePaymentPage = () => {
   });
 
   const auth = getAuth(app);
-  const logout = async () => {
+
+  const logout = useCallback(async () => {
     await signOut(auth);
     setUsers(null);
 
     router.push("/login");
-  };
+  }, [auth, router]);
 
-  const startTimer = () => {
+  const startTimer = useCallback(() => {
     if (timer) {
       clearTimeout(timer);
     }
     const timeout = 15 * 60 * 1000;
     const timerId = setTimeout(logout, timeout);
     setTimer(timerId);
-  };
+  }, [timer, logout]);
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
@@ -85,7 +86,7 @@ const OneTimePaymentPage = () => {
       }
       unsubscribe();
     };
-  }, [auth, timer]);
+  }, [auth, timer, router, startTimer]);
 
   const handleInput = (e) => {
     const { name, value } = e.target;
@@ -203,38 +204,31 @@ const OneTimePaymentPage = () => {
                     make.
                   </p>
                 </div>
-                <h2>Account</h2>
-                <div>
-                  status: {account.status}
-                  <br />
-                  <br />
-                  addresses: {JSON.stringify(account.addresses)}
-                  <br />
-                  chainId: {account.chainId}
-                </div>
-
-                {account.status === "connected" && (
-                  <button type="button" onClick={() => disconnect()}>
-                    Disconnect
-                  </button>
-                )}
-
-                <div>
-                  <h2>Connect</h2>
-                  {connectors.map((connector) => (
-                    <button
-                      id={connector.id}
-                      key={connector.uid}
-                      onClick={() => connect({ connector })}
-                      type="button"
-                    >
-                      {connector.name}
-                    </button>
-                  ))}
-                  <div>{status}</div>
-                  <div>{error?.message}</div>
-                </div>
               </div>
+
+              <div>
+              {connectors.map((connector) =>
+                account.status === "connected" ? (
+                  <button
+                    key={connector.uid}
+                    type="button"
+                    className="bg-[#ECECEC] border-[1px] border-[#9B30FF] text-[#0B081C] px-4 py-2 rounded-full text-lg flex items-center space-x-2"
+                    onClick={() => disconnect()}
+                  >
+                    <span>{account.address}</span>
+                  </button>
+                ) : (
+                  <button
+                    key={connector.uid} // Added key for each button
+                    type="button"
+                    className="bg-[#ECECEC] border-1px text-[#0B081C] px-4 py-2 rounded-full text-lg flex items-center space-x-2"
+                    onClick={() => connect({ connector })}
+                  >
+                    <span>connect wallet</span>
+                  </button>
+                )
+              )}
+            </div>
 
               <form className="mt-6" onSubmit={payOneUser}>
                 <div className="mb-4">

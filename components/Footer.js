@@ -50,12 +50,12 @@ const Footer = () => {
           <h1 className="lg:text-lg font-medium text-black">Follow Us</h1>
           <ul className="text-gray-700 font-normal mt-6">
             <li className="text-sm text-gray-600">
-              <a href="https://www.linkedin.com/company/swiftpay-finance/">
+              <a href="https://www.linkedin.com/">
                 Linkedin
               </a>
             </li>
             <li className="text-sm text-gray-600 mt-2">
-              <a href="https://twitter.com/swiftpayfinance">Twitter</a>
+              <a href="https://twitter.com/">Twitter</a>
             </li>
           </ul>
         </div>

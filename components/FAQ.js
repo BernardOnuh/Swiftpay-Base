@@ -8,7 +8,7 @@ const FAQ = () => {
     {
       question: "What is SwiftPay?",
       answer:
-        "SwiftPay is a cutting-edge crypto payroll platform that enables businesses to efficiently and securely pay their employees in cryptocurrencies such as Bitcoin, Ethereum, and others. It simplifies the process of cryptocurrency payroll management.",
+        "SwiftPay is a cutting-edge crypto payroll platform that enables businesses to efficiently and securely pay their employees in cryptocurrencies such as Base ethereum, base usdc and others. It simplifies the process of cryptocurrency payroll management.",
     },
     {
       question: "How does SwiftPay work?",
@@ -23,7 +23,7 @@ const FAQ = () => {
     {
       question: "What cryptocurrencies are supported by SwiftPay?",
       answer:
-        "SwiftPay currently supports popular cryptocurrencies like Flow (FLOW), Ethereum (ETH). We continually expand our cryptocurrency support to meet the evolving needs of our users.",
+        "SwiftPay currently supports popular cryptocurrencies like ETH (Base), USDC (Base). We continually expand our cryptocurrency support to meet the evolving needs of our users.",
     },
     {
       question: "How can I get started with SwiftPay?",
